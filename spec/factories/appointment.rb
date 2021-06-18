@@ -1,6 +1,8 @@
 FactoryBot.define do
-  factory :trainer do
+  factory :appointment do
     appointment_time { Faker::Date }
-    status 'active'
+    status { 'active' }
+    user_id { 1 }
+    trainer_id { 1 }
   end
 end
