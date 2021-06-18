@@ -12,15 +12,15 @@
 
 ActiveRecord::Schema.define(version: 2021_06_18_110139) do
 
-  create_table "appoinments", force: :cascade do |t|
-    t.datetime "appoinment_time"
+  create_table "appointments", force: :cascade do |t|
+    t.datetime "appointment_time"
     t.integer "user_id", null: false
     t.integer "trainer_id", null: false
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["trainer_id"], name: "index_appoinments_on_trainer_id"
-    t.index ["user_id"], name: "index_appoinments_on_user_id"
+    t.index ["trainer_id"], name: "index_appointments_on_trainer_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
   create_table "trainers", force: :cascade do |t|
@@ -39,6 +39,6 @@ ActiveRecord::Schema.define(version: 2021_06_18_110139) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "appoinments", "trainers"
-  add_foreign_key "appoinments", "users"
+  add_foreign_key "appointments", "trainers"
+  add_foreign_key "appointments", "users"
 end
