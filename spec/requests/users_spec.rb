@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
+RSpec.describe 'Users', type: :request do
   let!(:users) { create_list(:user, 5) }
   let(:user_id) { User.first.id }
 
-  describe "GET /users/:id" do
+  describe 'GET /users/:id' do
     before { get "/users/#{user_id}" }
 
     context 'when the user exist' do
@@ -31,7 +31,7 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe "Post /users/" do
+  describe 'Post /users/' do
     let(:correct_attributes) { { name: 'Alfred', email: 'admin@test.com' } }
 
     context 'when the user is valid' do
@@ -58,7 +58,7 @@ RSpec.describe "Users", type: :request do
           .to match(/Validation failed: Email can't be blank/)
       end
     end
-  end 
+  end
 
   describe 'Delete /users/:id' do
     before { delete "/users/#{user_id}" }

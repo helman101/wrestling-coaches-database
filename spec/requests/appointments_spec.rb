@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe "Appointments", type: :request do
+RSpec.describe 'Appointments', type: :request do
   let!(:user) { create(:user) }
   let!(:trainer) { create(:trainer) }
   let!(:appointments) { create_list(:appointment, 10, user_id: user.id, trainer_id: trainer.id) }
   let(:user_id) { user.id }
   let(:trainer_id) { trainer.id }
   let(:id) { appointments.first.id }
-  
-  describe "GET /users/:user_id/appointments" do
+
+  describe 'GET /users/:user_id/appointments' do
     before { get "/users/#{user_id}/appointments" }
-    
+
     context 'when user exist' do
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
@@ -46,7 +46,10 @@ RSpec.describe "Appointments", type: :request do
     end
 
     context 'when an invalid request' do
-      before { post "/users/#{user_id}/appointments", params: { appointment_time: Time.now, user_id: user_id, trainer_id: user_id } }
+      before do
+        post "/users/#{user_id}/appointments",
+             params: { appointment_time: Time.now, user_id: user_id, trainer_id: user_id }
+      end
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)

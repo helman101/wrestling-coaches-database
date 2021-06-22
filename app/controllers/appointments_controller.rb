@@ -29,5 +29,4 @@ class AppointmentsController < ApplicationController
   def appointment_params
     params.permit(:trainer_id, :user_id, :appointment_time, :status)
   end
-
 end

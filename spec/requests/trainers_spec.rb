@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "Trainers", type: :request do
+RSpec.describe 'Trainers', type: :request do
   let!(:trainers) { create_list(:trainer, 5) }
   let(:trainer_id) { trainers.first.id }
 
-  describe "GET /trainers" do
+  describe 'GET /trainers' do
     before { get '/trainers' }
 
     it 'returns trainers' do
@@ -13,6 +13,7 @@ RSpec.describe "Trainers", type: :request do
     end
 
     it 'returns status code 200' do
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -27,7 +28,7 @@ RSpec.describe "Trainers", type: :request do
 
       it 'return status code 200' do
         expect(response).to have_http_status(200)
-      end 
+      end
     end
 
     context 'when the trainer doesn\'t exist' do
@@ -42,5 +43,4 @@ RSpec.describe "Trainers", type: :request do
       end
     end
   end
-
 end
