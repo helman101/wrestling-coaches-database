@@ -27,6 +27,6 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.permit(:trainer_id, :user_id, :appointment_time, :status)
+    params.permit(:trainer_id, :user_id, :appointmentTime)
   end
 end

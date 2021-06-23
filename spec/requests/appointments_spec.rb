@@ -35,7 +35,7 @@ RSpec.describe 'Appointments', type: :request do
   end
 
   describe 'POST /users/:user_id/appointments' do
-    let(:correct_attributes) { { appointment_time: Time.now, status: 'active', user_id: user_id, trainer_id: user_id } }
+    let(:correct_attributes) { { appointmentTime: Time.now, user_id: user_id, trainer_id: user_id } }
 
     context 'when request attributes are valid' do
       before { post "/users/#{user_id}/appointments", params: correct_attributes }
@@ -56,7 +56,7 @@ RSpec.describe 'Appointments', type: :request do
       end
 
       it 'returns a failure message' do
-        expect(response.body).to match(/Validation failed: Status can't be blank/)
+        expect(response.body).to match(/Validation failed: Appointmenttime can't be blank/)
       end
     end
   end
