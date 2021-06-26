@@ -24,7 +24,7 @@ Trainer.create(name: 'The Big Show',
 Trainer.create(name: 'Kofi Kingston',
               description: "Regarded as one of the most decorated superstars in WWE history, Kingston became a four-time Intercontinental Champion and a three-time United States Champion. In 2014, he formed The New Day with Big E and Xavier Woods. The trio went on to break the record for the longest Tag Team Championship reign in WWE history when they held the WWE Raw Tag Team Championship from August 2015 to December 2016, while defending the titles under the Freebird rule. All totaled, Kingston is a 14-time Tag Team Champion in WWE. In April 2019, Kingston defeated Daniel Bryan at WrestleMania 35 to win the WWE Championship, giving him 22 total championships in WWE.",
               fightingStyle: 'Krav magá',
-              trainerImg: '')
+              trainerImg: 'https://raw.githubusercontent.com/helman101/wrestling-coaches-database/feature/deploy/app/assets/kofi.png')
 
 Trainer.create(name: 'Rey Misterio (Mystery King)',
               description: "Won the Cruiserweight Championship three times, the World Heavyweight Championship twice, the Intercontinental Championship and United States Championship twice each, and the WWE Championship once. Mysterio also won the Tag Team Championship four times, becoming WWE's 21st Triple Crown and Grand Slam champion, is a Royal Rumble match winner, and has headlined several WWE pay-per-view events.",
