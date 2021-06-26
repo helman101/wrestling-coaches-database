@@ -19,7 +19,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     context 'when the user doesn\'t exist' do
-      let(:user_id) { 50 }
+      let(:user_id) { 1000 } 
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
@@ -32,7 +32,7 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'Post /users/' do
-    let(:correct_attributes) { { name: 'Alfred', email: 'admin@test.com' } }
+    let(:correct_attributes) { { name: 'Alfred', email: 'admin@test.com', password: '1234' } }
 
     context 'when the user is valid' do
       before { post '/users', params: correct_attributes }
@@ -47,7 +47,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     context 'when the user is invalid' do
-      before { post '/users', params: { name: 'Admin' } }
+      before { post '/users', params: { name: 'Admin', password: '1234' } }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -56,6 +56,47 @@ RSpec.describe 'Users', type: :request do
       it 'return a validation failure message' do
         expect(response.body)
           .to match(/Validation failed: Email can't be blank/)
+      end
+    end
+  end
+
+  describe 'Get /login' do
+    let(:user_name) { users.first.name }
+    let(:user_password) {users.first.password}
+    before { get "/login?name=#{user_name}&password=#{user_password}" }
+
+    context 'when the user exist' do
+      it 'returns the user' do
+        expect(json).not_to be_empty
+        expect(json['id']).to eq(user_id)
+      end
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'when the user doesn\'t exist' do
+      let(:user_name) { '1234' } 
+
+      it 'returns status code 404' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'returns status no exist' do
+        expect(response.body).to match(/NO EXIST/)
+      end
+    end
+
+    context 'when password is wrong' do
+      let(:user_password) { 'wrong' } 
+
+      it 'returns status code 404' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'returns exist message' do
+        expect(response.body).to match(/EXIST/)
       end
     end
   end
