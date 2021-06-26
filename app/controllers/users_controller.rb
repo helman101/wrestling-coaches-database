@@ -15,10 +15,25 @@ class UsersController < ApplicationController
     head :no_content
   end
 
+  def look
+    user = get_user(user_params)
+    if user
+      if user.authenticate(params[:password])
+        json_response({ id: user.id, name: user.name, email: user.email })
+      else json_response({status: 'EXIST'})
+      end
+    else json_response({status: 'NO EXIST'})
+    end
+  end
+
   private
 
   def user_params
-    params.permit(:name, :email)
+    params.permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def get_user(u_params)
+    User.find_by(name: u_params[:name])
   end
 
   def set_user
