@@ -19,7 +19,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     context 'when the user doesn\'t exist' do
-      let(:user_id) { 1000 } 
+      let(:user_id) { 1000 }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
@@ -32,7 +32,9 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'Post /users/' do
-    let(:correct_attributes) { { name: 'Alfred', email: 'admin@test.com', password: '1234' } }
+    let(:correct_attributes) do
+      { name: 'Alfred', email: 'admin@test.com', password: '1234', password_confirmation: '1234' }
+    end
 
     context 'when the user is valid' do
       before { post '/users', params: correct_attributes }
@@ -62,7 +64,7 @@ RSpec.describe 'Users', type: :request do
 
   describe 'Get /login' do
     let(:user_name) { users.first.name }
-    let(:user_password) {users.first.password}
+    let(:user_password) { users.first.password }
     before { get "/login?name=#{user_name}&password=#{user_password}" }
 
     context 'when the user exist' do
@@ -77,7 +79,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     context 'when the user doesn\'t exist' do
-      let(:user_name) { '1234' } 
+      let(:user_name) { '1234' }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(200)
@@ -89,7 +91,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     context 'when password is wrong' do
-      let(:user_password) { 'wrong' } 
+      let(:user_password) { 'wrong' }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(200)

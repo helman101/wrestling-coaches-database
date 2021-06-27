@@ -20,9 +20,9 @@ class UsersController < ApplicationController
     if user
       if user.authenticate(params[:password])
         json_response({ id: user.id, name: user.name, email: user.email })
-      else json_response({status: 'EXIST'})
+      else json_response({ status: 'EXIST' })
       end
-    else json_response({status: 'NO EXIST'})
+    else json_response({ status: 'NO EXIST' })
     end
   end
 
