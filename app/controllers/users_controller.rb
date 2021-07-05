@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def get_user(u_params)
-    User.find_by(name: u_params[:name])
+    User.find_by(email: u_params[:email])
   end
 
   def set_user
