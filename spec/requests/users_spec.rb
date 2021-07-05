@@ -63,9 +63,9 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'Get /login' do
-    let(:user_name) { users.first.name }
+    let(:user_email) { users.first.email }
     let(:user_password) { users.first.password }
-    before { get "/login?name=#{user_name}&password=#{user_password}" }
+    before { get "/login?email=#{user_email}&password=#{user_password}" }
 
     context 'when the user exist' do
       it 'returns the user' do
@@ -79,7 +79,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     context 'when the user doesn\'t exist' do
-      let(:user_name) { '1234' }
+      let(:user_email) { '1234' }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(200)
