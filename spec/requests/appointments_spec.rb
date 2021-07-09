@@ -35,7 +35,7 @@ RSpec.describe 'Appointments', type: :request do
   end
 
   describe 'POST /users/:user_id/appointments' do
-    let(:correct_attributes) { { appointmentTime: Time.now, user_id: user_id, trainer_id: user_id } }
+    let(:correct_attributes) { { appointmentTime: Time.now, user_id: user_id, trainer_id: trainer_id } }
 
     context 'when request attributes are valid' do
       before { post "/users/#{user_id}/appointments", params: correct_attributes }
@@ -48,7 +48,7 @@ RSpec.describe 'Appointments', type: :request do
     context 'when an invalid request' do
       before do
         post "/users/#{user_id}/appointments",
-             params: { appointment_time: Time.now, user_id: user_id, trainer_id: user_id }
+             params: { appointment_time: Time.now, user_id: user_id, trainer_id: trainer_id }
       end
 
       it 'returns status code 422' do
